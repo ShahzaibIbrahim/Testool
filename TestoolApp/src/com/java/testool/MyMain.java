@@ -23,7 +23,7 @@ public class MyMain {
 		
 		// these values will come from UI
 	//--------------Input 1 ------------------//
-		/*
+		
 		String baseUrl = "http://128.1.98.9:8083/Backoffice/common/login.jsp";
 		List<Task> taskList = new ArrayList<>();
 
@@ -39,7 +39,7 @@ public class MyMain {
 		executeProcess(process, baseUrl);
 		System.out.println(process);
 		
-		*/
+		
 		
 		
 	}
