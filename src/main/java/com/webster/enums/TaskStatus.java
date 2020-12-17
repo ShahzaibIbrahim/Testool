@@ -1,7 +1,5 @@
 package com.webster.enums;
 
-import com.webster.beans.Task;
-
 public enum TaskStatus {
 
     SUCCESS ("01", "Task Executed"), FAILURE ("02", "Task Failed"), PENDING("03", "Task Pending");

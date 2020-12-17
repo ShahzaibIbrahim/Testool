@@ -15,7 +15,7 @@ import com.webster.enums.ResultTypes;
 
 public class MyMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		// these values will come from UI
 		//--------------Input 1 ------------------//
@@ -25,7 +25,7 @@ public class MyMain {
 
 		Task pn = new Task("login_input1", ElementTypes.CLASS, "Username", "ES.USER1", ControlTypes.TEXT_BOX);
 		Task p = new Task("txtPassword", ElementTypes.ID, "Password", "XYZxyz1234", ControlTypes.TEXT_BOX);
-		Task p0 = new Task("blubtn", ElementTypes.CLASS , "Login Button", "", ControlTypes.BUTTON);
+		Task p0 = new Task("bluebtn", ElementTypes.CLASS , "Login Button", "", ControlTypes.BUTTON);
 		//Task p1 = new Task("Life Insurance", ElementTypes.PARTIAL_TEXT, "Life Insurance Button", true, false, "", ControlTypes.BUTTON);
 		
 		// Need to add in order
@@ -33,8 +33,8 @@ public class MyMain {
 
 		Process process = new Process("Login", taskList, ResultTypes.TITLE, "FWU AG");
 
-		ProcessExecutionHandler processExecutionHandler = new ProcessExecutionHandler();
-		processExecutionHandler.executeProcess(process, baseUrl);
+		ProcessExecutionHandler processExecutionHandler = new ProcessExecutionHandler(baseUrl, "C:\\Users\\Shahzaib.Ibrahim\\Desktop\\test.png");
+		processExecutionHandler.executeProcess(process);
 
 		System.out.println("Printing Process : \n\n"+ process);
 

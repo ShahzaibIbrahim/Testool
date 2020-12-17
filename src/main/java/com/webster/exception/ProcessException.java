@@ -1,4 +1,4 @@
-package com.webster;
+package com.webster.exception;
 
 public class ProcessException extends RuntimeException{
     /*
