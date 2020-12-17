@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.webster.handler.ProcessExecutionHandler;
 import org.junit.ComparisonFailure;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
@@ -27,85 +28,23 @@ public class MyMain {
 		String baseUrl = "http://128.1.95.113:8080/Backoffice/common/login.jsp";
 		List<Task> taskList = new ArrayList<>();
 
-		Task pn = new Task("login_input1", ElementTypes.CLASS, "Username", false, true, "ES.USER1", ControlTypes.TEXT_BOX);
-		Task p = new Task("txtPassword", ElementTypes.ID, "Password", false, true, "XYZxyz1234", ControlTypes.TEXT_BOX);
-		Task p0 = new Task("bluebtn", ElementTypes.CLASS , "Login Button", true, false, "", ControlTypes.BUTTON);	
+		Task pn = new Task("login_input1", ElementTypes.CLASS, "Username", "ES.USER1", ControlTypes.TEXT_BOX);
+		Task p = new Task("txtPassword", ElementTypes.ID, "Password", "XYZxyz1234", ControlTypes.TEXT_BOX);
+		Task p0 = new Task("blubtn", ElementTypes.CLASS , "Login Button", "", ControlTypes.BUTTON);
 		//Task p1 = new Task("Life Insurance", ElementTypes.PARTIAL_TEXT, "Life Insurance Button", true, false, "", ControlTypes.BUTTON);
 		
 		// Need to add in order
 		taskList.add(pn); taskList.add(p); taskList.add(p0);// taskList.add(p1);
 
 		Process process = new Process("Login", taskList, ResultTypes.TITLE, "FWU AG");
-		executeProcess(process, baseUrl);
-		System.out.println(process);
-		
-		
-		
-		
+
+		ProcessExecutionHandler processExecutionHandler = new ProcessExecutionHandler();
+		processExecutionHandler.executeProcess(process, baseUrl);
+
+		System.out.println("Printing Process : \n\n"+ process);
+
 	}
-	
-	
-	@Test
-	private static void executeProcess(Process process, String baseUrl)
-	{
-		Testool testool = new Testool(baseUrl);
-		String actualResult = "";
-		
-		for(Task task : process.getTasks())
-		{
-			WebElement element = testool.getWebElement(task.getElementName(), task.getElementType());
-			
-			if(task.getControlType().equals(ControlTypes.TEXT_BOX))
-			{
-				element.clear();// Do something
-				element.sendKeys(task.getFieldValue());
-			}
-			else if(task.getControlType().equals(ControlTypes.BUTTON))
-			{
-				element.click();
-			}
-			else if(task.getControlType().equals(ControlTypes.DROP_DOWN))
-			{
-				Select dropdown = new Select(element);
-				dropdown.selectByValue(task.getFieldValue());
-			}
-			else if(task.getControlType().equals(ControlTypes.CHECK_BOX))
-			{
-				element.click();
-			}
-			
-			
-			
-			/*
-			if(task.isField())
-			{
-				element.clear();
-				element.sendKeys(task.getFieldValue());
-			}
-			
-			if(task.isClick())
-			{
-				element.click();
-			}
-			*/
-			
-			
-		}
-		
-		actualResult = testool.getResult(process.getResultType());
-		
-		try
-		{
-			assertEquals(process.getExpectedResult(), actualResult);
-			process.setStatus(true);
-			process.setStatusMessage("Process: "+process.getProcessName()+" Executed SuccessFully");
-		}
-		catch (ComparisonFailure exp)
-		{
-			process.setStatus(false);
-			process.setStatusMessage("Process: "+process.getProcessName()+" Failed: "+exp.getMessage());
-		}
-		
-	}
+
+
 
 }

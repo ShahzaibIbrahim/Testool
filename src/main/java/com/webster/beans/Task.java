@@ -8,10 +8,10 @@ public class Task {
 	private String elementName;
 	private ElementTypes elementType;
 	private String displayName;
-	private boolean click;
-	private boolean field;
 	private String fieldValue;
 	private ControlTypes controlType;
+	private String statusMessage;
+
 	
 	
 	/**
@@ -20,18 +20,24 @@ public class Task {
 	 * @param types
 	 * @param displayName
 	 */
-	public Task(String elementName, ElementTypes types, String displayName, boolean click, boolean field, String fieldValue, ControlTypes controlType) {
+	public Task(String elementName, ElementTypes types, String displayName, String fieldValue, ControlTypes controlType) {
 		super();
 		this.elementName = elementName;
 		this.elementType = types;
 		this.displayName = displayName;
-		this.click = click;
-		this.field = field;
 		this.fieldValue = fieldValue;
 		this.controlType = controlType;
+		this.statusMessage = "Task Pending";
 		
 	}
 
+	public String getStatusMessage() {
+		return statusMessage;
+	}
+
+	public void setStatusMessage(String statusMessage) {
+		this.statusMessage = statusMessage;
+	}
 
 	public String getElementName() {
 		return elementName;
@@ -63,26 +69,6 @@ public class Task {
 	}
 	
 
-	public boolean isClick() {
-		return click;
-	}
-
-
-	public void setClick(boolean click) {
-		this.click = click;
-	}
-
-	
-	public boolean isField() {
-		return field;
-	}
-
-
-	public void setField(boolean field) {
-		this.field = field;
-	}
-
-
 	public String getFieldValue() {
 		return fieldValue;
 	}
@@ -106,12 +92,13 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task [elementName=" + elementName + ", elementType=" + elementType + ", displayName=" + displayName
-				+ ", click=" + click + ", field=" + field + ", fieldValue=" + fieldValue + "]";
+		return "Task{" +
+				"elementName='" + elementName + '\'' +
+				", elementType=" + elementType +
+				", displayName='" + displayName + '\'' +
+				", fieldValue='" + fieldValue + '\'' +
+				", controlType=" + controlType +
+				", statusMessage='" + statusMessage + '\'' +
+				'}';
 	}
-
-	
-	
-	
-	
 }
