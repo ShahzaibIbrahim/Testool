@@ -3,6 +3,7 @@ package com.webster.handler;
 import com.webster.ProcessException;
 import com.webster.beans.Process;
 import com.webster.beans.Task;
+import com.webster.enums.TaskStatus;
 import com.webster.testool.Testool;
 import org.junit.ComparisonFailure;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class ProcessExecutionHandler {
 
                 switch (task.getControlType()) {
                     case TEXT_BOX:
-                        element.clear();// Do something
+                        element.clear();
                         element.sendKeys(task.getFieldValue());
                         break;
                     case CHECK_BOX:
@@ -40,10 +41,12 @@ public class ProcessExecutionHandler {
                     default:
                         throw new ProcessException("Invalid Control Type Selected");
                 }
-                task.setStatusMessage("Task Executed");
+                task.setStatusMessage(TaskStatus.SUCCESS.getMessage());
+                task.setStatusCode(TaskStatus.SUCCESS.getStatus());
 
             } catch (Exception e) {
-                task.setStatusMessage(e.getLocalizedMessage()); // TODO: Also Set Status
+                task.setStatusCode(TaskStatus.FAILURE.getStatus());
+                task.setStatusMessage(e.getMessage());
                 process.setStatus(false);
                 process.setStatusMessage("Process: " + process.getProcessName() + " Failed: " + "Please Correct All Task");
                 return false;

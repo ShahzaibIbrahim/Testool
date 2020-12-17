@@ -1,15 +1,10 @@
 package com.webster.testool;
 
-import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.webster.handler.ProcessExecutionHandler;
-import org.junit.ComparisonFailure;
-import org.junit.Test;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import com.webster.beans.Process;
 import com.webster.beans.Task;

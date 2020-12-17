@@ -2,6 +2,7 @@ package com.webster.beans;
 
 import com.webster.enums.ControlTypes;
 import com.webster.enums.ElementTypes;
+import com.webster.enums.TaskStatus;
 
 public class Task {
 	
@@ -11,6 +12,7 @@ public class Task {
 	private String fieldValue;
 	private ControlTypes controlType;
 	private String statusMessage;
+	private String statusCode;
 
 	
 	
@@ -27,8 +29,17 @@ public class Task {
 		this.displayName = displayName;
 		this.fieldValue = fieldValue;
 		this.controlType = controlType;
-		this.statusMessage = "Task Pending";
+		this.statusMessage = TaskStatus.PENDING.getMessage();
+		this.statusCode = TaskStatus.PENDING.getStatus();
 		
+	}
+
+	public String getStatusCode() {
+		return statusCode;
+	}
+
+	public void setStatusCode(String statusCode) {
+		this.statusCode = statusCode;
 	}
 
 	public String getStatusMessage() {
@@ -92,13 +103,14 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "Task{" +
+		return "\nTask{" +
 				"elementName='" + elementName + '\'' +
 				", elementType=" + elementType +
 				", displayName='" + displayName + '\'' +
 				", fieldValue='" + fieldValue + '\'' +
 				", controlType=" + controlType +
 				", statusMessage='" + statusMessage + '\'' +
+				", statusCode='" + statusCode + '\'' +
 				'}';
 	}
 }
